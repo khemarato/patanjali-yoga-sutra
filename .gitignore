@@ -1,0 +1,8 @@
+vendor
+_site
+.trash
+.obsidian
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+*.swp

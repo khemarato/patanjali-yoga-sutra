@@ -1,0 +1,48 @@
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+
+title: The Patañjali Yoga Sūtra
+email: khemarato.bhikkhu@gmail.com
+description: >- # this means to ignore newlines until "baseurl:"
+  Yet another translation of the Sanskrit classic.
+baseurl: "/patanjali-yoga-sutra" # the subpath of your site, e.g. /blog
+url: "https://buddhistuniversity.net" # the base hostname & protocol for your site, e.g. http://example.com
+github_username:  buddhist-uni
+
+# Build settings
+remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-seo-tag
+ga_tracking: UA-159403467-1
+
+footer_content: "Copyright &copy; 2022 Khemarato Bhikkhu. All rights reserved."
+
+gh_edit_link: true # show or hide edit this page link
+gh_edit_link_text: "Leave a comment on GitHub"
+gh_edit_repository: "https://github.com/buddhist-uni/patanjali-yoga-sutra" # the github URL for your repo
+gh_edit_branch: "main" # the branch that your docs is served from
+# gh_edit_source: docs # the source that your files originate from
+gh_edit_view_mode: "tree" # "tree" or "edit" if you want the user to jump into the editor immediately
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: [li]
+  startings: []
+  blanklines: false
+  profile: false
+
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
