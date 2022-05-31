@@ -21,11 +21,11 @@ ga_tracking: UA-159403467-1
 footer_content: "Copyright &copy; 2022 Khemarato Bhikkhu. All rights reserved."
 
 gh_edit_link: true # show or hide edit this page link
-gh_edit_link_text: "Leave a comment on GitHub"
+gh_edit_link_text: "View this page's source on GitHub"
 gh_edit_repository: "https://github.com/buddhist-uni/patanjali-yoga-sutra" # the github URL for your repo
 gh_edit_branch: "main" # the branch that your docs is served from
 # gh_edit_source: docs # the source that your files originate from
-gh_edit_view_mode: "tree" # "tree" or "edit" if you want the user to jump into the editor immediately
+gh_edit_view_mode: "blame" # "tree" to view or "edit" if you want the user to jump into the editor immediately
 
 compress_html:
   clippings: all
@@ -35,14 +35,19 @@ compress_html:
   blanklines: false
   profile: false
 
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - scripts/
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+collections:
+  aphorisms:
+    output: false
