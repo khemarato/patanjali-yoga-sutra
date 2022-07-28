@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Home
+title: The Yoga Sūtra
 nav_order: 1
 description: "A new translation of the classic of Sanskrit literature."
 permalink: /
