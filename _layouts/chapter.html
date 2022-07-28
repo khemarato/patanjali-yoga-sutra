@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+<div>
+<h1>Chapter {{ page.slug }}: {{ page.title }}</h1>
+<div>{{ page.content }}</div>
+<div>
+{% assign ch = site.aphorisms | where: "chapter", page.slug | sort: "slug" %}
+{% for l in ch %}
+{% include aphorism.html line=l %}
+{% endfor %}
+</div>
+</div>
+
+<div style="width:auto;overflow:hidden">
+  {% assign p = page.slug | minus: 1 %}
+  {% assign n = page.slug | plus: 1 %}
+  {% assign prev = site.chapters | where: "slug", p | first %}
+  {% assign next = site.chapters | where: "slug", n | first %}
+  {% if prev %}
+    <a style="display:block;float:left;margin:5px" href="{{ prev.url | relative_url }}">&laquo; Ch {{ p }}: {{prev.title}}</a>
+  {% endif %}{% if next %}
+    <a style="text-align:right;display:block;float:right;margin:5px" href="{{ next.url | relative_url }}">Ch {{ n }}: {{ next.title }} &raquo;</a>
+  {% else %}
+    <i style="text-align:right;display:block;float:right;margin:5px">~ Fin</i>
+  {% endif %}
+</div>

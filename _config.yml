@@ -48,6 +48,22 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
 
+permalink: pretty
+
+# need to modify the theme to include
+# collection pages in search and nav
+search_enabled: false
+
 collections:
   aphorisms:
     output: false
+  chapters:
+    output: true
+    permalink: /:collection/:path
+
+defaults:
+  -
+    scope:
+      type: "chapters"
+    values:
+      layout: "chapter"

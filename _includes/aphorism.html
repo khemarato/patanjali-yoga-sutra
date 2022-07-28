@@ -1,0 +1,4 @@
+<p>
+  <div>{{ include.line.verse }}: <i>{{ include.line.root_text }}</i></div>
+  <div>{{ include.line.translation | markdownify | replace: "<p>", "" | replace: "</p>", "" }}</div>
+</p>
