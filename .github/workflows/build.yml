@@ -19,11 +19,18 @@ jobs:
             BUILD_DIR="${GITHUB_WORKSPACE}/../jekyll_build"
             mkdir $BUILD_DIR
             cd $GITHUB_WORKSPACE
-            HASH="$(git log -n 1 --format=%H)"
-            echo "Building $HASH into $BUILD_DIR ..."
             JEKYLL_ENV=production bundle exec jekyll build -d $BUILD_DIR
+            cp ../jekyll_build/booksource.md ./booksource-compiled.md
+         - name: Make the PDF
+           uses: docker://pandoc/latex:latest
+           with:
+            args: --output=book.pdf booksource-compiled.md
+         - name: Push to GitHub Pages
+           run: | 
+            mv book.pdf ../jekyll_build/
             echo "Build complete. Pushing to production branch..."
-            cd $BUILD_DIR
+            HASH="$(git log -n 1 --format=%H)"
+            cd ../jekyll_build
             touch .nojekyll
             git init -b temp
             git config user.name "OBU Build Bot"
