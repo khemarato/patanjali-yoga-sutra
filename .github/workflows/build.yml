@@ -1,0 +1,33 @@
+name: Build the site
+on:
+  push:
+     branches:
+       - main
+jobs:
+  Jekyll:
+     runs-on: ubuntu-latest
+     steps:
+         - name: Checkout the Code
+           uses: actions/checkout@v2
+         - name: Install build requirements
+           uses: ruby/setup-ruby@v1
+           with:
+             ruby-version: 2.6
+             bundler-cache: true
+         - name: Build the site
+           run: |
+            BUILD_DIR="${GITHUB_WORKSPACE}/../jekyll_build"
+            mkdir $BUILD_DIR
+            cd $GITHUB_WORKSPACE
+            HASH="$(git log -n 1 --format=%H)"
+            echo "Building $HASH into $BUILD_DIR ..."
+            JEKYLL_ENV=production bundle exec jekyll build -d $BUILD_DIR
+            echo "Build complete. Pushing to production branch..."
+            cd $BUILD_DIR
+            touch .nojekyll
+            git init -b temp
+            git config user.name "OBU Build Bot"
+            git config user.email "buddhist-uni@users.noreply.github.com"
+            git add .
+            git commit -m "Automated GitHub build from ${HASH}" --quiet
+            git push --force "https://buddhist-uni:${{ secrets.GITHUB_TOKEN }}@github.com/buddhist-uni/patanjali-yoga-sutra.git" temp:production
