@@ -14,21 +14,33 @@ jobs:
            with:
              ruby-version: 2.6
              bundler-cache: true
+         - name: Fetch PDF Template
+           uses: dsaltares/fetch-gh-release-asset@master
+           with:
+             repo: 'Wandmalfarbe/pandoc-latex-template'
+             file: 'Eisvogel.tar.gz'
+             target: 'eisvogel/Eisvogel.tar.gz'
+             token: ${{ secrets.GITHUB_TOKEN }}
          - name: Build the site
            run: |
             BUILD_DIR="${GITHUB_WORKSPACE}/../jekyll_build"
             mkdir $BUILD_DIR
             cd $GITHUB_WORKSPACE
             JEKYLL_ENV=production bundle exec jekyll build -d $BUILD_DIR
-            cp ../jekyll_build/booksource.md ./booksource-compiled.md
+         - name: Prepare Pandoc Inputs
+           run: |
+            cp ../jekyll_build/pdfsource.md ./pdfsource-compiled.md
+            cd eisvogel
+            gunzip Eisvogel.tar.gz
+            tar -xf Eisvogel.tar
+            mv eisvogel.latex ../
          - name: Make the PDF
-           uses: docker://pandoc/latex:latest
+           uses: docker://rstropek/pandoc-latex:latest
            with:
-            args: --output=book.pdf booksource-compiled.md
+            args: --output "YogaSutra.pdf" pdfsource-compiled.md --template eisvogel --listings
          - name: Push to GitHub Pages
            run: | 
-            mv book.pdf ../jekyll_build/
-            echo "Build complete. Pushing to production branch..."
+            mv "YogaSutra.pdf" ../jekyll_build/
             HASH="$(git log -n 1 --format=%H)"
             cd ../jekyll_build
             touch .nojekyll

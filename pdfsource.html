@@ -1,0 +1,34 @@
+---
+layout: nil
+permalink: pdfsource.md
+comment: | 
+  This is the source markdown file which Jekyll will compile into a complete md file for Pandoc+LaTeX.
+  This frontmatter is consumed by Jekyll and won't be rendered.
+  The yaml frontmatter below, starting with title:, will be output and is consumed by pandoc.
+  This file is named `.html` so Jekyll won't markdownify it. The permalink field above will make sure it gets renamed to `.md` by the build.
+---
+---
+title: "The Patañjali Yoga Sūtra"
+date: {{ site.time | date: "%Y-%m-%d DRAFT" }}
+---
+
+# The Yoga Sūtra of Patañjali
+
+A Buddhist translation by Khemarato Bhikkhu
+
+Copyright 2022. Not for distribution.  
+Please send any feedback you have on this draft to khemarato.bhikkhu@gmail.com
+
+{% for c in site.chapters %}
+## Chapter {{ c.slug }}: {{ c.title }}
+
+{{ c.content }}
+
+{% assign ch = site.aphorisms | where: "chapter", c.slug | sort: "slug" %}
+{% for l in ch %}
+{{ c.slug }}.{{ l.verse }}: _{{ l.root_text }}_  
+{{ l.translation }}
+{% endfor %}
+
+{% endfor %}
+
