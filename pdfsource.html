@@ -16,11 +16,11 @@ date: {{ site.time | date: "%Y-%m-%d DRAFT" }}
 
 A Buddhist translation by Khemarato Bhikkhu
 
-Copyright 2022. Not for distribution.  
-Please send any feedback you have on this draft to khemarato.bhikkhu@gmail.com
+Copyright 2022. Not (yet) for distribution.  
+Please send any feedback you have on this draft translation to khemarato.bhikkhu@gmail.com
 
 {% for c in site.chapters %}
-## Chapter {{ c.slug }}: {{ c.title }}
+## Chapter {{ c.slug }}: {{ c.name }}
 
 {{ c.content }}
 
@@ -32,3 +32,6 @@ Please send any feedback you have on this draft to khemarato.bhikkhu@gmail.com
 
 {% endfor %}
 
+\begin{center}
+\emph{Here ends the} Yoga Sūtra \emph{of} Patañjali
+\end{center}

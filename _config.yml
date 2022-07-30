@@ -50,9 +50,19 @@ exclude:
 
 permalink: pretty
 
-# need to modify the theme to include
-# collection pages in search and nav
+# Search only looks at page.content
+# It cannot tell I'm adding so much
+# in the templates via frontmatter
+# so I'll have to write a custom
+#   - assets/js/zzzz-search-data.json
+# if I want to get search to work :/
 search_enabled: false
+just_the_docs:
+  collections:
+    pages:
+      name: ""
+    chapters:
+      name: "Chapters"
 
 collections:
   aphorisms:
