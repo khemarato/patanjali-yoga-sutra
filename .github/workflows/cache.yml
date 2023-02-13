@@ -34,5 +34,5 @@ jobs:
             fi
           }
           export -f purgeaurl
-          git ls-files | sed 's/^/https:\/\/buddhistuniversity.net\/patanjali-yoga-sutra\//g' | sed 's/^\(.*\)\/index.html/\1\n\1\/\n\1\/index.html/g' | sed 's/^\(.*\).html/\1.html\n\1/g' | xargs -n 1 -P 100 -I {} bash -c 'purgeaurl "{}"'
+          git ls-files | sed 's/^/https:\/\/buddhistuniversity.net\/patanjali-yoga-sutra\//g' | sed 's/^\(.*\)\/index.html/\1\n\1\/\n\1\/index.html/g' | sed 's/^\(.*\).html/\1.html\n\1/g' | xargs -P 100 -I {} bash -c 'purgeaurl "{}"'
 
