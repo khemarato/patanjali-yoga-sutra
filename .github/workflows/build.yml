@@ -33,7 +33,7 @@ jobs:
             cd eisvogel
             gunzip Eisvogel.tar.gz
             tar -xf Eisvogel.tar
-            cd Eisvogel*
+            cd Eisvogel-*
             mv eisvogel.latex ../../
          - name: Make the PDF
            uses: docker://rstropek/pandoc-latex:latest
